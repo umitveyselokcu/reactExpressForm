@@ -1,0 +1,29 @@
+version: "3"
+services:
+  backend:
+    build: 
+      context: ./backend/
+      dockerfile: ./Dockerfile
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/app-db
+      - NODE_ENV=development    
+    volumes:
+      - ./backend:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+  frontend:
+    build:     
+      context: ./frontend/
+      dockerfile: ./Dockerfile
+    ports:
+      - "3005:3005"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
