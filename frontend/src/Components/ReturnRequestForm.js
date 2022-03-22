@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const formValidation = Yup.object().shape({
   partSerialNumber: Yup.string()
     .matches(/^[0-9a-z]+$/).min(6).max(10)
@@ -51,8 +50,6 @@ const formValidation = Yup.object().shape({
 const endpoint = 'http://127.0.0.1:3000/v1/returnRequests';
 
 export default function ReturnRequestForm(refresh) {
-
-
   const [state, setState] = useState(false);
   const [rows, setRows] = useState([]);
   useEffect(async () => {
@@ -60,9 +57,7 @@ export default function ReturnRequestForm(refresh) {
       setRows(res.data);
 
     });
-
   }, [state]);
-
 
   const classes = useStyles();
   const formik = useFormik({
